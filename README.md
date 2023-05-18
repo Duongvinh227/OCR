@@ -16,3 +16,5 @@ Step 3 : detect locations containing information on cccd
 Step 4: use pytesseract to get information about information storage locations and rewrite the information as json
 
 Step 5 : finally displayed image and json information up
+
+![d580e7dc3fd8e186b8c9](https://github.com/Duongvinh227/OCR/assets/96807833/568f2634-0a9c-4532-9a45-6b70e203758f)
