@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1>Uploaded Image</h1>
+    <img src="{{ url_for('static', filename='uploaded_image.jpg') }}" alt="Uploaded Image">
+
+    <h1>Identification Result</h1>
+    <ul>
+        <li>Id: {{ result.id }}</li>
+        <li>Name: {{ result.name }}</li>
+        <li>Date of Birth: {{ result.birth }}</li>
+        <li>Sex: {{ result.sex }}</li>
+        <li>Home_town: {{ result.home_town }}</li>
+        <li>Residence: {{ result.residence }}</li>
+    </ul>
+</body>
+</html>

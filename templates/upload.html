@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Image</h1>
+    <form method="POST" enctype="multipart/form-data" onsubmit="uploadImage(event)">
+        <input type="file" id="image-input" accept="image/*" required>
+        <button type="submit">Upload</button>
+    </form>
+    <div id="image-container" class="hidden">
+        <h2>Uploaded Image</h2>
+        <img id="uploaded-image" src="" alt="Uploaded Image">
+        <h2>Identification Result</h2>
+        <ul>
+            <li>Id: <span id="id"></span></li>
+            <li>Name: <span id="name"></span></li>
+            <li>Date of Birth: <span id="birth"></span></li>
+            <li>Sex: <span id="sex"></span></li>
+            <li>Home Town: <span id="home_town"></span></li>
+            <li>Residence: <span id="residence"></span></li>
+        </ul>
+    </div>
+    <script>
+        function uploadImage(event) {
+            event.preventDefault();
+
+            const input = document.getElementById('image-input');
+            const file = input.files[0];
+
+            if (file) {
+                const formData = new FormData();
+                formData.append('image', file);
+
+                fetch('/', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showImagePreview(file);
+                        window.location.href = '/display_info';  // Chuyển hướng đến "/display_info"
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+
+        function showImagePreview(file) {
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const image = document.getElementById('uploaded-image');
+                image.src = event.target.result;
+
+                const imageContainer = document.getElementById('image-container');
+                imageContainer.classList.remove('hidden');
+            };
+
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>
